@@ -1,0 +1,31 @@
+{
+  "name": "system-id",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "#mocha",
+    "boot": "node ./run/init.js",
+    "hw": "git add -A && git commit -m 'oki'&&npm version patch -m patch&&git add -A && git commit --amend -C HEAD&& git push&&npm publish",
+    "patch": "npm version patch -m patch&&git add -A && git commit --amend -C HEAD&& git push&&npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dottgonzo/system-id.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dottgonzo/system-id/issues"
+  },
+  "dependencies": {
+    "output-file-sync": "^1.1.1",
+    "path-exists": "^2.1.0",
+    "promise": "^7.0.4",
+    "uuid": "^2.0.1"
+  },
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "mocha": "^2.3.4"
+  }
+}
