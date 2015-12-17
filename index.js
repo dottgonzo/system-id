@@ -77,6 +77,11 @@ SysId.prototype.read=function(){
 SysId.prototype.decode=function(){
   return jwt.verify(this.tracker, this.secret);
 };
+SysId.prototype.auth=function(){
+  var code=jwt.verify(this.tracker, this.secret)
+  code.serial=readSerial(this.dir)
+  return jwt.verify(this.tracker, this.secret);
+};
 SysId.prototype.sign=function(json){
   var token = jwt.sign(json, this.secret);
   return token
