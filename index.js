@@ -45,10 +45,10 @@ function SysId(json){
 
 
   if(json.path){
-    this.serialPath=json.path;
+    this.path=json.path;
 
 } else{
-  this.serialPath='/etc/nodeid';
+  this.path='/etc/nodeid';
 
 }
 if(json.tracker){
@@ -59,11 +59,11 @@ this.tracker=false;
 
 }
 
-  if (!pathExists.sync(this.serialPath+'/serial')){
+  if (!pathExists.sync(this.path+'/serial')){
 
-    var config=initsysid(this.serialPath,this.tracker);
+    var config=initsysid(this.path,this.tracker);
   } else{
-    var config=readJson(this.serialPath);
+    var config=readJson(this.path);
   }
 
   for(var c=0;c<Object.keys(config).length;c++){
@@ -72,7 +72,7 @@ this.tracker=false;
 
 };
 SysId.prototype.read=function(){
-  return readJson(this.serialPath)
+  return readJson(this.path)
 };
 SysId.prototype.decode=function(){
   return jwt.verify(this.tracker, this.secret);
@@ -104,15 +104,15 @@ var config={
     if(objectkey){
       if(objectkey.serial){
         this.serial=objectkey.serial;
-        outputFileSync(this.serialPath+'/serial', this.serial, 'utf-8');
+        outputFileSync(this.path+'/serial', this.serial, 'utf-8');
 
 delete objectkey.serial;
       }
       var token = jwt.sign(objectkey, this.secret);
-      outputFileSync(this.serialPath+'/.tracker', token, 'utf-8');
+      outputFileSync(this.path+'/.tracker', token, 'utf-8');
     }
 
-    outputFileSync(this.serialPath+'/.secret', JSON.stringify(config), 'utf-8');
+    outputFileSync(this.path+'/.secret', JSON.stringify(config), 'utf-8');
     for(var c=0;c<Object.keys(config).length;c++){
       this[Object.keys(config)[c]]=config[Object.keys(config)[c]];
     }
