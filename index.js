@@ -6,9 +6,6 @@ outputFileSync = require('output-file-sync');
 
 function initsysid(serialPath,autosigned){
 
-
-
-
   var config={
     serial:uuid.v4(),
     secret:uuid.v4()+uuid.v4()
