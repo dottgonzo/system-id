@@ -97,11 +97,11 @@ SysId.prototype.verify=function(token,maxAge){
 SysId.prototype.validate=function(serial,objectkey){
 
 
-  if(serial==this.serial&&this.tracker&&this.tracker=='pending'){
+  if(objectkey&&serial==this.serial&&this.tracker&&this.tracker=='pending'){
 var config={
   secret:this.secret
 }
-    if(objectkey){
+
       if(objectkey.serial){
         this.serial=objectkey.serial;
         outputFileSync(this.dir+'/serial', this.serial, 'utf-8');
@@ -110,12 +110,7 @@ delete objectkey.serial;
       }
       var token = jwt.sign(objectkey, this.secret);
       outputFileSync(this.dir+'/.tracker', token, 'utf-8');
-    }
-
-    outputFileSync(this.dir+'/.secret', JSON.stringify(config), 'utf-8');
-    for(var c=0;c<Object.keys(config).length;c++){
-      this[Object.keys(config)[c]]=config[Object.keys(config)[c]];
-    }
+      this.tracker=token
     // reset object
 
   } else{
