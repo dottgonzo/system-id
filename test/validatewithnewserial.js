@@ -4,10 +4,9 @@ outputFileSync = require('output-file-sync'),
 sysId=require('../index');
 
 var serialpath='/tmp/tokentest/seriavalwns'+new Date().getTime()+'.json';
-var t='kjbklbwefibwfe';
-var newserial='tfpi97fp7i';
+var newserial={auth:'tfpi97fp7i'};
 var oldserial=new sysId(serialpath);
-oldserial.validate(oldserial.serial,t,newserial);
+oldserial.validate(oldserial.serial,newserial);
 var newserial=oldserial.read();
 
 describe('update', function() {

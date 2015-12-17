@@ -2,21 +2,26 @@ var uuid=require('uuid'),
 pathExists=require('path-exists'),
 Promise=require('promise'),
 fs = require('fs'),
+jwt = require('jsonwebtoken'),
 outputFileSync = require('output-file-sync');
 
 function initsysid(serialPath,autosigned){
+
+
+
+
   var config={
-    serial:uuid.v4()
+    serial:uuid.v4(),
+    secret:uuid.v4()+uuid.v4()
   }
 
   if(autosigned){
-    config.token=uuid.v4();
-    config.validated=true
+    config.tracker='self'
   }
 
-    outputFileSync(serialPath, JSON.stringify(config), 'utf-8');
+  outputFileSync(serialPath, JSON.stringify(config), 'utf-8');
 
-return JSON.parse(fs.readFileSync(serialPath))
+  return JSON.parse(fs.readFileSync(serialPath))
 }
 
 function readSerial(serialPath){
@@ -41,21 +46,21 @@ function SysId(serialPath,autosigned){
     this.autosigned=false
 
   }
-  console.log(this.serialPath);
+
   if (!pathExists.sync(this.serialPath)){
 
 
 
-var conf=initsysid(this.serialPath,this.autosigned);
-for(var c=0;c<Object.keys(conf).length;c++){
-this[Object.keys(conf)[c]]=conf[Object.keys(conf)[c]];
-}
+    var conf=initsysid(this.serialPath,this.autosigned);
+    for(var c=0;c<Object.keys(conf).length;c++){
+      this[Object.keys(conf)[c]]=conf[Object.keys(conf)[c]];
+    }
 
   } else{
     var conf=readSerial(this.serialPath);
 
     for(var c=0;c<Object.keys(conf).length;c++){
-          this[Object.keys(conf)[c]]=conf[Object.keys(conf)[c]];
+      this[Object.keys(conf)[c]]=conf[Object.keys(conf)[c]];
 
     }
 
@@ -67,55 +72,56 @@ this[Object.keys(conf)[c]]=conf[Object.keys(conf)[c]];
 
 };
 SysId.prototype.read=function(){
-  // if (!pathExists.sync(this.serialPath)){
-return readSerial(this.serialPath)
-// } else{
-//   throw new Error('wrong serial or token or no validate')
-//
-// }
+  return readSerial(this.serialPath)
 };
-SysId.prototype.update=function(serial,oldtoken,newtoken){
-
-  if(serial==this.serial&&oldtoken==this.token&&this.validated){
-    var config={
-      serial:serial,
-      token:newtoken,
-      validated:this.validated
+SysId.prototype.decode=function(){
+  return jwt.verify(this.serial, this.secret);
+};
+SysId.prototype.sign=function(json){
+  var token = jwt.sign(json, this.secret);
+  return token
+};
+SysId.prototype.verify=function(token,maxAge){
+  try {
+    if(maxAge){
+      var decoded = jwt.verify(token, this.secret,{maxAge:maxAge});
+    } else{
+      var decoded = jwt.verify(token, this.secret);
     }
-
-    outputFileSync(this.serialPath, JSON.stringify(config), 'utf-8');
-    for(var c=0;c<Object.keys(config).length;c++){
-          this[Object.keys(config)[c]]=config[Object.keys(config)[c]];
-
-    }
-
-
-  } else{
-    throw new Error('wrong serial or token or no validate')
+    return decoded
+  } catch(err) {
+    return err
   }
+};
 
-},
-
-SysId.prototype.validate=function(serial,token,newserial){
+SysId.prototype.validate=function(serial,objectkey){
   var conf=this;
 
-    if(serial==conf.serial&&!conf.validated){
-      if(newserial){
-        serial=newserial
+  if(serial==this.serial&&!this.tracker){
+    var config=readSerial(this.serialPath);
+
+    if(objectkey){
+      if(objectkey.serial){
+        config.serial=objectkey.serial;
+delete objectkey.serial;
       }
-      var config={
-        serial:serial,
-        token:token,
-        validated:true
-      }
-      outputFileSync(this.serialPath, JSON.stringify(config), 'utf-8');
+      var token = jwt.sign(objectkey, this.secret);
 
-
-      // reset object
-
-    } else{
-      throw new Error('wrong serial or token or no validate')
+      config.tracker=token;
     }
+
+
+
+    outputFileSync(this.serialPath, JSON.stringify(config), 'utf-8');
+
+    for(var c=0;c<Object.keys(config).length;c++){
+      this[Object.keys(config)[c]]=config[Object.keys(config)[c]];
+    }
+    // reset object
+
+  } else{
+    throw new Error('wrong serial or just validated')
+  }
 
 
 

@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "#mocha",
-    "boot": "node ./run/init.js",
+    "test": "mocha",
+    "prepublish": "npm test",
     "hw": "git add -A && git commit -m 'oki'&&npm version patch -m patch&&git add -A && git commit --amend -C HEAD&& git push&&npm publish",
     "patch": "npm version patch -m patch&&git add -A && git commit --amend -C HEAD&& git push&&npm publish"
   },
@@ -19,6 +19,7 @@
     "url": "https://github.com/dottgonzo/system-id/issues"
   },
   "dependencies": {
+    "jsonwebtoken": "^5.4.1",
     "output-file-sync": "^1.1.1",
     "path-exists": "^2.1.0",
     "promise": "^7.0.4",
