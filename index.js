@@ -1,6 +1,5 @@
 var uuid=require('uuid'),
 pathExists=require('path-exists'),
-Promise=require('promise'),
 fs = require('fs'),
 jwt = require('jsonwebtoken'),
 outputFileSync = require('output-file-sync');
