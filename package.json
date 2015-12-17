@@ -1,13 +1,12 @@
 {
   "name": "system-id",
-  "version": "0.0.7",
+  "version": "0.0.10",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "mocha ",
     "prepublish": "npm test",
-    "patch": "npm version --no-git-tag-version && git add -A && git commit -m patch && git push&& npm publish"
-
+    "patch": "npm version --no-git-tag-version patch && git add -A && git commit -m patch && git push&& npm publish"
   },
   "repository": {
     "type": "git",
