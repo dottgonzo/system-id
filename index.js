@@ -108,7 +108,7 @@ var config={
 
 delete objectkey.serial;
       }
-      var token = jwt.sign(objectkey, this.secret);
+      var token = jwt.sign(objectkey, this.secret,{noTimestamp:true});
       outputFileSync(this.dir+'/.tracker', token, 'utf-8');
       this.tracker=token
     // reset object
