@@ -3,7 +3,7 @@ assert = require('chai').assert,
 outputFileSync = require('output-file-sync'),
 sysId=require('../index');
 
-var serialpath='/tmp/tokentest'+new Date().getTime();
+var serialpath='/tmp/tokentestvalid'+new Date().getTime();
 var newserial={auth:'tfpi97fp7i'};
 var oldserial=new sysId({path:serialpath,tracker:true});
 oldserial.validate(oldserial.serial,newserial);
