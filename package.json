@@ -1,13 +1,12 @@
 {
   "name": "system-id",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "prepublish": "npm test",
-    "hw": "git add -A && git commit -m 'oki' &&npm version patch -m patch&&git add -A && git commit --amend -C HEAD&& git push&&npm publish",
-    "patch": "npm version patch -m patch&&git add -A && git commit --amend -C HEAD&& git push&&npm publish"
+    "prepublish": "npm test&&npm --no-git-tag-version version &&git add -A && git commit --amend --no-edit&& git push",
+    "patch": "npm prepublish"
   },
   "repository": {
     "type": "git",
