@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
-    "prepublish": "npm test && git add -A && npm version patch && git push",
-    "patch": "npm prepublish"
+    "test": "mocha ",
+    "prepublish": "npm test",
+    "patch": "npm version --no-git-tag-version && git add -A && git commit -m patch && git push&& npm publish"
+
   },
   "repository": {
     "type": "git",
