@@ -1,10 +1,10 @@
 {
   "name": "system-id",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha ",
+    "test": "node_modules/.bin/mocha ",
     "prepublish": "npm test",
     "patch": "git add -A && git commit -m patch && npm version --no-git-tag-version patch && git push&& npm publish"
   },
@@ -21,7 +21,6 @@
     "jsonwebtoken": "^5.4.1",
     "output-file-sync": "^1.1.1",
     "path-exists": "^2.1.0",
-    "promise": "^7.0.4",
     "uuid": "^2.0.1"
   },
   "devDependencies": {
