@@ -52,7 +52,7 @@ function SysId(json){
 
 }
 if(json.tracker){
-  this.tracker=true;
+  this.tracker='pending';
 
 } else{
 this.tracker=false;
@@ -60,7 +60,7 @@ this.tracker=false;
 }
 
   if (!pathExists.sync(this.serialPath+'/serial')){
-    
+
     var config=initsysid(this.serialPath,this.tracker);
   } else{
     var config=readJson(this.serialPath);
@@ -97,7 +97,7 @@ SysId.prototype.verify=function(token,maxAge){
 SysId.prototype.validate=function(serial,objectkey){
 
 
-  if(serial==this.serial&&this.tracker&&this.tracker==true){
+  if(serial==this.serial&&this.tracker&&this.tracker=='pending'){
 var config={
   secret:this.secret
 }
