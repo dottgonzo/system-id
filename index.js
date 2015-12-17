@@ -16,22 +16,22 @@ var secret=uuid.v4()+uuid.v4();
 
 function readSerial(serialPath){
 
-  return fs.readFileSync(serialPath+'/serial')
+  return fs.readFileSync(serialPath+'/serial','utf8')
 
 }
-function readSecrets(serialPath){
+function readSecret(serialPath){
 
-  return fs.readFileSync(serialPath+'/.secret')
+  return fs.readFileSync(serialPath+'/.secret','utf8')
 
 }
 function readTracker(serialPath){
 
-  return fs.readFileSync(serialPath+'/.tracker')
+  return fs.readFileSync(serialPath+'/.tracker','utf8')
 
 }
 function readJson(serialPath){
   var config={}
-  config.secret=readSecrets(serialPath);
+  config.secret=readSecret(serialPath);
   config.serial=readSerial(serialPath)
   if(pathExists.sync(serialPath+'/.tracker')){
     config.tracker=readTracker(serialPath)
