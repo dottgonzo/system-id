@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "prepublish": "npm test && npm --no-git-tag-version version &&git add -A && git commit --amend --no-edit&& git push",
+    "prepublish": "npm test && git add -A && npm version patch && git push",
     "patch": "npm prepublish"
   },
   "repository": {
