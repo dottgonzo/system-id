@@ -80,7 +80,7 @@ SysId.prototype.decode=function(){
 SysId.prototype.auth=function(){
   var code=jwt.verify(this.tracker, this.secret)
   code.serial=readSerial(this.dir)
-  return jwt.verify(this.tracker, this.secret);
+  return code;
 };
 SysId.prototype.sign=function(json){
   var token = jwt.sign(json, this.secret);
