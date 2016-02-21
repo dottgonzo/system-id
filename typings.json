@@ -1,0 +1,27 @@
+{
+    "name": "system-id",
+    "dependencies": {},
+    "devDependencies": {},
+    "ambientDependencies": {
+        "jsonwebtoken": "github:DefinitelyTyped/DefinitelyTyped/jsonwebtoken/jsonwebtoken.d.ts#8d9e2d7993a2ac7d38427bd08bee641251f2dfd4",
+        "node": "github:DefinitelyTyped/DefinitelyTyped/node/node.d.ts#20e1eb9616922d382d918cc5a21870a9dbe255f5"
+    },
+    "ambientDevDependencies": {
+        "Q": "github:DefinitelyTyped/DefinitelyTyped/q/Q.d.ts#4de74cb527395c13ba20b438c3a7a419ad931f1c",
+        "chai": "github:DefinitelyTyped/DefinitelyTyped/chai/chai.d.ts#1914a00b3c740348dae407ee0d2be89b0b58ad7f",
+        "chalk": "github:DefinitelyTyped/DefinitelyTyped/chalk/chalk.d.ts#5d4a87811a8282f01bc1cdf2156020d78515fa2e",
+        "gulp": "github:DefinitelyTyped/DefinitelyTyped/gulp/gulp.d.ts#052725d74978d6b8d7c4ff537b5a3b21ee755a49",
+        "gulp-concat": "github:DefinitelyTyped/DefinitelyTyped/gulp-concat/gulp-concat.d.ts#750b43c5b25887b6dc14ed3be1ccca5aa74d60b5",
+        "gulp-filter": "github:DefinitelyTyped/DefinitelyTyped/gulp-filter/gulp-filter.d.ts#1735153b55c4616192219e7edaecdef3971bd5b3",
+        "gulp-mocha": "github:DefinitelyTyped/DefinitelyTyped/gulp-mocha/gulp-mocha.d.ts#37b6a533837766f0c765e4181dfc11e06dfbd752",
+        "gulp-sourcemaps": "github:DefinitelyTyped/DefinitelyTyped/gulp-sourcemaps/gulp-sourcemaps.d.ts#5d6c3bdb5d936b257f22961890141a999e19daef",
+        "gulp-typescript": "github:DefinitelyTyped/DefinitelyTyped/gulp-typescript/gulp-typescript.d.ts#960fd659b456e2fb5d23c52794ffdc56b09796cf",
+        "gulp-util": "github:DefinitelyTyped/DefinitelyTyped/gulp-util/gulp-util.d.ts#5d4a87811a8282f01bc1cdf2156020d78515fa2e",
+        "minimatch": "github:DefinitelyTyped/DefinitelyTyped/minimatch/minimatch.d.ts#a3900b896f7b3361b79f9b503224777619907d53",
+        "mocha": "github:DefinitelyTyped/DefinitelyTyped/mocha/mocha.d.ts#d6dd320291705694ba8e1a79497a908e9f5e6617",
+        "orchestrator": "github:DefinitelyTyped/DefinitelyTyped/orchestrator/orchestrator.d.ts#422b006d39dd37fc667ce5464967ee3ff6135092",
+        "path-exists": "github:DefinitelyTyped/DefinitelyTyped/path-exists/path-exists.d.ts#9b4dfcf8d8f234b8e1cf97e0a95d51e90d39c67e",
+        "through2": "github:DefinitelyTyped/DefinitelyTyped/through2/through2.d.ts#48f20e97bfaf70fc1a9537b38aed98e9749be0ae",
+        "vinyl": "github:DefinitelyTyped/DefinitelyTyped/vinyl/vinyl.d.ts#4ead81cc68ab1a2cd824de4394e1bda72b1b9f92"
+    }
+}

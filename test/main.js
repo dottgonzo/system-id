@@ -1,8 +1,8 @@
 var mocha = require('mocha'),
 assert = require('chai').assert,
-sysId=require('../index');
+SysId=require('../index');
 var serialpath='/tmp/tokentest';
-var serial=new sysId({path:serialpath});
+var serial=new SysId({dir:serialpath});
 
 describe('configuration', function() {
   describe('check basic existence', function() {
