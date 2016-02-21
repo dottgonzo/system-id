@@ -64,18 +64,18 @@ class SysID {
     secret: string;
     serial: string;
 
-    constructor(json: Iid) {
+    constructor(dir:string,options) {
 
-        let config:IJson;
+        let config: IJson;
 
-        if (json.dir) {
-            this.dir = json.dir;
+        if (dir) {
+            this.dir = dir;
 
         } else {
-            this.dir = '/etc/nodeid';
+            throw new Error('wrong dir')
 
         }
-        if (json.tracker !== false) {
+        if (options.tracker !== false) {
 
             this.tracker = 'pending';
 
