@@ -7,8 +7,14 @@ let uuid = require('uuid');
 let outputFileSync = require('output-file-sync');
 
 
-function initsysid(serialPath: string): { serial: string; secret: string } {
-    let serial: string = uuid.v4();
+function initsysid(serialPath: string,seri?:string): { serial: string; secret: string } {
+    let serial:string;
+    if(seri){
+        serial=seri;
+    } else{
+        serial=uuid.v4();
+    }
+
     let secret: string = uuid.v4() + uuid.v4();
 
     outputFileSync(serialPath + '/.secret', secret, 'utf-8');
@@ -57,14 +63,17 @@ interface Iid {
     tracker?: boolean;
 
 }
-
+interface Iopt {
+    tracker?:boolean;
+    serial?:string
+}
 class SysID {
     dir: string;
-    tracker: string;
+    tracker: any;
     secret: string;
     serial: string;
 
-    constructor(dir:string,options) {
+    constructor(dir:string,options?:Iopt) {
 
         let config: IJson;
 
@@ -75,15 +84,17 @@ class SysID {
             throw new Error('wrong dir')
 
         }
-        if (options.tracker !== false) {
+        if (!options||!options.tracker) {
 
-            this.tracker = 'pending';
+            this.tracker = false;
 
+        } else if(options.tracker){
+                        this.tracker = 'pending';
         }
 
         if (!pathExists.sync(this.dir + '/serial')) {
 
-            config = initsysid(this.dir);
+            config = initsysid(this.dir,options.serial);
         } else {
             config = readJson(this.dir);
         }
