@@ -130,7 +130,6 @@ this.tracker = false;
 
     validate(serial, objectkey) {
 
-
         if (!this.tracker) {
             var config = {
                 secret: this.secret
