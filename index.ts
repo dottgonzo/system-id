@@ -88,8 +88,6 @@ class SysID {
 
             this.tracker = false;
 
-        } else if(options.tracker){
-                        this.tracker = 'pending';
         }
 
         if (!pathExists.sync(this.dir + '/serial')) {
@@ -138,7 +136,7 @@ class SysID {
     validate(serial, objectkey) {
 
 
-        if (objectkey && serial == this.serial && this.tracker && this.tracker == 'pending') {
+        if (this.tracker) {
             var config = {
                 secret: this.secret
             }
