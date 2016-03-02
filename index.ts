@@ -84,11 +84,8 @@ class SysID {
             throw new Error('wrong dir')
 
         }
-        if (!options||!options.tracker) {
-
-            this.tracker = false;
-
-        }
+        if (!options) options = {}
+this.tracker = false;
 
         if (!pathExists.sync(this.dir + '/serial')) {
 
@@ -134,7 +131,7 @@ class SysID {
     validate(serial, objectkey) {
 
 
-        if (this.tracker) {
+        if (!this.tracker) {
             var config = {
                 secret: this.secret
             }

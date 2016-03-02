@@ -4,7 +4,7 @@ let assert = chai.assert;
 let outputFileSync = require('output-file-sync');
 import SysId=require('../index');
 
-let serialpath='/tmp/tokentestvalid'+new Date().getTime();
+let serialpath='/tmp/tokentestvalid1'+new Date().getTime();
 let newserial={auth:'tfpi97fp7i'};
 let oldserial:any=new SysId(serialpath,{tracker:true});
 oldserial.validate(oldserial.serial,newserial);
