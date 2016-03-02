@@ -103,8 +103,6 @@ class SysID {
     }
 
 
-
-
     read() {
         return readJson(this.dir)
     };
